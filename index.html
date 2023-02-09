@@ -79,14 +79,13 @@
       console.log(a)
       /* Log the account details to the console for now */
       
-        window.parent.postMessage(
-            JSON.stringify({
-
-              data: "a"
-            }),
-            "*"
-          );
-    }
+window.parent.postMessage(
+       JSON.stringify({
+                    event_code: "ym-client-event",
+                    data: "a"
+               }),
+                "*"
+           );    }
     
    
   </script>
