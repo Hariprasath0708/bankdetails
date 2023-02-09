@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    /* Add styles for the form and its elements */
+    form {
+      width: 250px;
+      margin: auto;
+      padding: 10px;
+      border: px solid #ccc;
+      border-radius: 10px;
+    }
+    input[type="text"], input[type="number"] {
+      width: 50%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 10px;
+      display: block;
+    }
+    input[type="submit"] {
+      width: 60%;
+      background-color: #4CAF50;
+      color: white;
+      padding: 14px 20px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: none;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #3e8e41;
+    }
+  </style>
+</head>
+<body>
+  <form id="bank-form">
+    <label for="Account-name">Account-Name:</label>
+    <input type="text" id="Account-name" name="Account-name" required>
+    
+    <label for="Bank Name">Bank Name:</label>
+    <input type="text" id="Bank Name" name="Bank Name" required>
+    
+    <label for="Bank Number">Bank Number:</label>
+    <input type="text" id="Bank Number" name="Bank Number" required>
+    
+    <label for="Bank Branch">Bank Branch:</label>
+    <input type="text" id="Bank Branch" name="Bank Branch" required>
+    
+    <input type="submit" value="Submit">
+  </form>
+
+  <script>
+    /* Add a submit event listener to the form */
+    document.querySelector("#bank-form").addEventListener("submit", function(event) {
+      event.preventDefault(); // prevent the form from submitting
+      
+      /* Get the values from the form inputs */
+      const fullName = document.querySelector("#Account-name").value;
+      const bankname = document.querySelector("#Bank Name").value;
+      const banknumber = document.querySelector("#Bank Number").value;
+      const bankbranch = document.querySelector("#Bank Branch").value;
+      
+      /* Store the values in an object */
+      const accountDetails = {
+        fullName: fullName,
+        bankname: bankname,
+        banknumber: banknumber,
+        bankbranch: bankbranch
+      };
+      
+      /* Log the account details to the console for now */
+      console.log(accountDetails);
+      window.parent.postMessage(
+            JSON.stringify({
+              event_code: "ym-client-event",
+            
+               data:accountDetails,
+              
+            }),
+            "*"
+          );
+    });
+  </script>
+</body>
+</html>
