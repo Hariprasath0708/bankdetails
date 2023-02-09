@@ -57,40 +57,38 @@
   <script>
     /* Add a submit event listener to the form */
    function storeAccountDetails() {
+     console.log("CheckCheck")
       /* Get the values from the form inputs */
-      const fullName = document.querySelector("#Account-name").value;
-      const email = document.querySelector("#Bank Branch").value;
-      const phone = document.querySelector("#Bank Number").value;
-      const accountNumber = document.querySelector("#Bank Branch").value;
-      
+      var fullName = document.getElementById("Account-name").value;
+     console.log(fullName)
+      var BankBranch = document.getElementById("Bank Branch").value;
+      var BankNumber = document.getElementById("Bank Number").value;
+      var BankBranch = document.getElementById("Bank Branch").value;
+      console.log(fullName);
+     console.log(BankBranch)
+     console.log(BankNumber)
+     console.log(BankBranch)
       /* Store the values in an object */
-      const accountDetails = {
+      var accountDetails = {
         fullName: fullName,
         BankBranch: BankBranch,
         BankNumber: BankNumber,
-        BankBranch: Bank Branch
+        BankBranch: BankBranch
       };
-      
+     var a =fullName + '/'+BankBranch +'/' +BankNumber+'/'+BankBranch;
+      console.log(a)
       /* Log the account details to the console for now */
-      console.log(accountDetails);
-    }
-    function storeAccountDetails(){
+      
         window.parent.postMessage(
             JSON.stringify({
-              event_code: "ym-client-event",
-              data: JSON.stringify({
-                event: {
-                  code: "bank",
-                  data: {
-                    accountdetails: accountDetails,
-                  },
-                },
-              }),
+
+              data: a
             }),
             "*"
           );
-          //alert(`${ratingValue} saved`);
     }
+    
+   
   </script>
 </body>
 </html>
