@@ -51,40 +51,46 @@
     <label for="Bank Branch">Bank Branch:</label>
     <input type="text" id="Bank Branch" name="Bank Branch" required>
     
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit" onclick="storeAccountDetails()">
   </form>
 
   <script>
     /* Add a submit event listener to the form */
-    document.querySelector("#bank-form").addEventListener("submit", function(event) {
-      event.preventDefault(); // prevent the form from submitting
-      
+   function storeAccountDetails() {
       /* Get the values from the form inputs */
       const fullName = document.querySelector("#Account-name").value;
-      const bankname = document.querySelector("#Bank Name").value;
-      const banknumber = document.querySelector("#Bank Number").value;
-      const bankbranch = document.querySelector("#Bank Branch").value;
+      const email = document.querySelector("#Bank Branch").value;
+      const phone = document.querySelector("#Bank Number").value;
+      const accountNumber = document.querySelector("#Bank Branch").value;
       
       /* Store the values in an object */
       const accountDetails = {
         fullName: fullName,
-        bankname: bankname,
-        banknumber: banknumber,
-        bankbranch: bankbranch
+        BankBranch: BankBranch,
+        BankNumber: BankNumber,
+        BankBranch: Bank Branch
       };
       
       /* Log the account details to the console for now */
       console.log(accountDetails);
-      window.parent.postMessage(
+    }
+    function storeAccountDetails(){
+        window.parent.postMessage(
             JSON.stringify({
               event_code: "ym-client-event",
-            
-               data:accountDetails,
-              
+              data: JSON.stringify({
+                event: {
+                  code: "bank",
+                  data: {
+                    accountdetails: accountdetails,
+                  },
+                },
+              }),
             }),
             "*"
           );
-    });
+          //alert(`${ratingValue} saved`);
+    }
   </script>
 </body>
 </html>
